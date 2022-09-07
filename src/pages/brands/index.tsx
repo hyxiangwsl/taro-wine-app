@@ -1,5 +1,6 @@
 import { View, Image } from "@tarojs/components";
 import { Component } from "react";
+import Taro from "@tarojs/taro";
 import { Back, Music } from "../components";
 import "./index.less";
 import text from "./imgs/index3_text.png";
@@ -13,7 +14,7 @@ import logo7 from "./imgs/index3_6.png";
 import logo8 from "./imgs/index3_4.png";
 import logo9 from "./imgs/index3_9.png";
 import logo10 from "./imgs/index3_8.png";
-import Taro from "@tarojs/taro";
+
 
 const logos = [
   logo1,
@@ -57,7 +58,7 @@ export default class PageView extends Component<{}, Istate> {
 
   toDetail = ()=>{
     Taro.navigateTo({
-      url:'pages/detail/index'
+      url:'/pages/detail/index'
     })
   }
 
