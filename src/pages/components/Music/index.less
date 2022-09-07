@@ -1,0 +1,26 @@
+.music {
+  height: 35px;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.active {
+  -webkit-animation: spin 1.5s linear 1.5s 5 alternate;
+  animation: spin 1.5s linear infinite;
+}

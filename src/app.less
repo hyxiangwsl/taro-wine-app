@@ -1,0 +1,52 @@
+// 渐入渐出
+@-webkit-keyframes fadeInOut {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+}
+
+// 渐出
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 1;
+  }
+}
+
+.fadeOut {
+  -webkit-animation: fadeOut 2s linear;
+  animation: fadeOut 2s linear;
+}
+
+
+// 发光效果
+@keyframes load {
+  0% {
+      box-shadow: inset 0px 0px 10px 5px rgba(246, 222, 186, 1), 0px 0px 10px 3px rgba(233, 147, 40, 0.5);
+  }
+  100% {
+      box-shadow: inset 0px 0px 10px 5px rgba(246, 222, 186, 1), 0px 0px 40px 3px rgba(233, 147, 40, 1);
+  }
+}
