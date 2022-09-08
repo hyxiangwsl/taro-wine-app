@@ -2,6 +2,7 @@ import { Component, PropsWithChildren } from "react";
 import Taro from "@tarojs/taro";
 import mp3 from "./bgm.mp3";
 import "./app.less";
+import "./common.less";
 
 let innerAudioContext;
 class App extends Component<PropsWithChildren> {

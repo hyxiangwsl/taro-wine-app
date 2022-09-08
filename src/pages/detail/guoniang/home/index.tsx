@@ -1,15 +1,19 @@
-import { View, Image, Text } from "@tarojs/components";
-import { Component } from "react";
+import { View, Image } from "@tarojs/components";
+import { useRouter } from "@tarojs/taro";
 import { Back, Music, Next } from "@/pages/components";
 import "./index.less";
 import detail_logo from "../imgs/logo1.png";
 import detail_t from "../imgs/title1.png";
-import detail_product from "../imgs/product.png";
+import detail_product from "../imgs/guoniang_product.png";
 
-export const Home = () => {
+const Home = () => {
+  const router = useRouter();
+  console.log(router.params); // 参数接收
+
+  const { path } = router.params;
   return (
     <View className='guoniang_home'>
-      <View className='guoniang_home_header'>
+      <View className='page_header'>
         <Back />
         <Music />
       </View>
@@ -20,8 +24,10 @@ export const Home = () => {
       <View className='guoniang_home_pic_product scaleDraw'>
         <Image src={detail_product} className='guoniang_home_pic'></Image>
       </View>
-
-      <Next to='/pages/brands/index' />
+      {/* 跳转下一页 */}
+      <Next to={`/pages/detail/${path}/detail`} />
     </View>
   );
 };
+
+export default Home;

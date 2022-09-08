@@ -14,32 +14,80 @@ import logo7 from "./imgs/index3_6.png";
 import logo8 from "./imgs/index3_4.png";
 import logo9 from "./imgs/index3_9.png";
 import logo10 from "./imgs/index3_8.png";
+import { Product } from "./Product";
 
+interface Logo {
+  path: string;
+  img: any;
+  name: string;
+}
 
-const logos = [
-  logo1,
-  logo2,
-  logo3,
-  logo4,
-  logo5,
-  logo6,
-  logo7,
-  logo8,
-  logo9,
-  logo10
+const logos: Logo[] = [
+  {
+    img: logo1,
+    path: Product.YUN_BIAN,
+    name: "云边藏秘"
+  },
+  {
+    img: logo2,
+    path: Product.GUO_NIANG,
+    name: "国酿"
+  },
+  {
+    img: logo3,
+    path: Product.XU_FU,
+    name: "叙府"
+  },
+  {
+    img: logo4,
+    path: Product.CHI_DU,
+    name: "赤渡"
+  },
+  {
+    img: logo5,
+    path: Product.TONG_CHUAN,
+    name: "通川"
+  },
+  {
+    img: logo6,
+    path: Product.E_ER,
+    name: "二峨"
+  },
+  {
+    img: logo7,
+    path: Product.LI_CHUAN,
+    name: "礼传"
+  },
+  {
+    img: logo8,
+    path: Product.CHONG_LONG,
+    name: "重龍"
+  },
+  {
+    img: logo9,
+    path: Product.ZI_RAN_XIANG,
+    name: "自然香"
+  },
+  {
+    img: logo10,
+    path: Product.XUE_YU,
+    name: "雪域雄鹰"
+  }
 ];
 
 interface Istate {
   ativeIndex: number;
   isChange: boolean; // 是否改变logo
+  path: string;
 }
 export default class PageView extends Component<{}, Istate> {
   state = {
     ativeIndex: 1,
-    isChange: true
+    isChange: true,
+    path: "guoniang"
   };
 
-  handleClick = (index: number) => {
+  handleClick = (index: number, item: Logo) => {
     const { ativeIndex } = this.state;
     if (ativeIndex !== index) {
       this.setState({
@@ -50,17 +98,19 @@ export default class PageView extends Component<{}, Istate> {
       setTimeout(() => {
         this.setState({
           isChange: true,
-          ativeIndex: index
+          ativeIndex: index,
+          path: item.path
         });
       }, 200);
     }
   };
 
-  toDetail = ()=>{
+  toDetail = () => {
+    const { path } = this.state;
     Taro.navigateTo({
-      url:'/pages/detail/index'
-    })
-  }
+      url: `/pages/detail/${path}/home?path=${path}` // 去到首页
+    });
+  };
 
   render() {
     const { ativeIndex, isChange } = this.state;
@@ -78,15 +128,15 @@ export default class PageView extends Component<{}, Istate> {
                 className={`index3_logo index3_position${index} ${
                   ativeIndex === index ? "logo_active" : ""
                 }`}
-                src={item}
+                src={item.img}
                 onClick={() => {
-                  this.handleClick(index);
+                  this.handleClick(index, item);
                 }}
               ></Image>
             );
           })}
           <Image
-            src={logos[ativeIndex]}
+            src={logos[ativeIndex]?.img}
             className={`index3_logo index3_logo_center ${
               isChange ? "scaleDraw" : ""
             } logo_active`}

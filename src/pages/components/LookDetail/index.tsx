@@ -21,14 +21,13 @@ export const LookDetail: React.FC<NextProps> = ({ img, alert }) => {
   const hidePortal = () => {
     setIsPortalVisible(false);
   };
-  console.log("点击了", isPortalVisible);
 
   return (
     <View>
       <Image src={img} className='look_detail' onClick={showPortal} />
       {isPortalVisible && (
         <Dialog visible={isPortalVisible} onHide={hidePortal}>
-          <View>
+          <View className='look_alert_con'>
             <Image className='look_alert' src={alert}></Image>
           </View>
         </Dialog>
