@@ -38,7 +38,6 @@ export default class PageView extends Component {
               className='index1_pointer'
               onClick={() => {
                 this.toNextPage();
-                console.log("下一页");
               }}
             ></Image>
           </View>

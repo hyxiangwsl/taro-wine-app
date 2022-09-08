@@ -5,6 +5,7 @@ import "./index.less";
 import detail_logo from "../imgs/logo1.png";
 import detail_t from "../imgs/title1.png";
 import detail_product from "../imgs/guoniang_product.png";
+import next from '../imgs/guoniang_next.png';
 
 const Home = () => {
   const router = useRouter();
@@ -25,7 +26,7 @@ const Home = () => {
         <Image src={detail_product} className='guoniang_home_pic'></Image>
       </View>
       {/* 跳转下一页 */}
-      <Next to={`/pages/detail/${path}/detail`} />
+      <Next className='guoniang_home_next' to={`/pages/detail/${path}/detail`} img={next} />
     </View>
   );
 };

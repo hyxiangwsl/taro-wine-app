@@ -1,18 +1,25 @@
 import { Image } from "@tarojs/components";
 import Taro from "@tarojs/taro";
-import img from "./imgs/index2_3.png";
 import "./index.less";
 
-interface NextProps{
+interface NextProps {
   // 下一页地址
-  to:string;
+  to: string;
+  img: any;
+  className?: string;
 }
 
-export const Next:React.FC<NextProps> = ({to}) => {
-  const doNavigate =()=>{
+export const Next: React.FC<NextProps> = ({ to, img, className='' }) => {
+  const doNavigate = () => {
     Taro.navigateTo({
       url: to
-    })
-  }
-  return <Image src={img} className='index' onClick={doNavigate} />;
+    });
+  };
+  return (
+    <Image
+      src={img}
+      className={`next_index ${className}`}
+      onClick={doNavigate}
+    />
+  );
 };

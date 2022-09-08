@@ -9,9 +9,14 @@ interface NextProps {
   // 图片
   img: any;
   alert: any; // 弹框
+  selfClassName?: string;
 }
 
-export const LookDetail: React.FC<NextProps> = ({ img, alert }) => {
+export const LookDetail: React.FC<NextProps> = ({
+  img,
+  alert,
+  selfClassName = ""
+}) => {
   const [isPortalVisible, setIsPortalVisible] = useState(false);
 
   const showPortal = () => {
@@ -24,7 +29,11 @@ export const LookDetail: React.FC<NextProps> = ({ img, alert }) => {
 
   return (
     <View>
-      <Image src={img} className='look_detail' onClick={showPortal} />
+      <Image
+        src={img}
+        className={`look_detail ${selfClassName}`}
+        onClick={showPortal}
+      />
       {isPortalVisible && (
         <Dialog visible={isPortalVisible} onHide={hidePortal}>
           <View className='look_alert_con'>
