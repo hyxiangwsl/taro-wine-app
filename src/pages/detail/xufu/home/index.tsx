@@ -6,6 +6,7 @@ import "./index.less";
 import detail_logo from "./imgs/xufu_logo.png";
 import detail_product from "./imgs/xufu_product.png";
 import detail_l from "./imgs/xufu_detail_l.png";
+import detail_r from "./imgs/xufu_detail_r.png";
 import xufu_brand_desc from "./imgs/xufu_brand_desc.png";
 
 
@@ -43,7 +44,7 @@ const Home = () => {
           <Image src={detail_l} className='footer_card' onClick={toNextPage}></Image>
           {/* 产品介绍 */}
           <Image
-            src={detail_l}
+            src={detail_r}
             className='footer_card'
             onClick={showPortal}
           ></Image>
