@@ -6,8 +6,22 @@ import img1 from "./imgs/index1_2.png";
 import img2 from "./imgs/index1_3.png";
 import img3 from "./imgs/index1_4.png";
 
-export default class PageView extends Component {
-  componentDidMount() {}
+interface IState {
+  showPoint: boolean;
+}
+
+export default class PageView extends Component<{}, IState> {
+  state = {
+    showPoint: false
+  };
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        showPoint: true
+      });
+    }, 2000);
+  }
 
   onScrollToUpper() {}
 
@@ -20,11 +34,12 @@ export default class PageView extends Component {
 
   toNextPage = () => {
     Taro.navigateTo({
-      url: '/pages/company/index'
-    })
+      url: "/pages/company/index"
+    });
   };
 
   render() {
+    const { showPoint } = this.state;
     return (
       <View className='index1'>
         <Image src={img1} className='index1_logo fadeOut'></Image>
@@ -33,13 +48,15 @@ export default class PageView extends Component {
             <Image src={img2} className='index1_title fadeOut'></Image>
           </View>
           <View className='index1_pCon'>
-            <Image
-              src={img3}
-              className='index1_pointer'
-              onClick={() => {
-                this.toNextPage();
-              }}
-            ></Image>
+            {showPoint && (
+              <Image
+                src={img3}
+                className='index1_pointer'
+                onClick={() => {
+                  this.toNextPage();
+                }}
+              ></Image>
+            )}
           </View>
         </View>
       </View>

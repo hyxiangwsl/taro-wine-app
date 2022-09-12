@@ -1,5 +1,5 @@
 import { View, Image } from "@tarojs/components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Taro from "@tarojs/taro";
 import { Back, Dialog, Music } from "@/pages/components";
 import "./index.less";
@@ -9,9 +9,12 @@ import detail_l from "./imgs/xufu_detail_l.png";
 import detail_r from "./imgs/xufu_detail_r.png";
 import xufu_brand_desc from "./imgs/xufu_brand_desc.png";
 
-
 const Home = () => {
   const [isPortalVisible, setIsPortalVisible] = useState(false);
+
+  const [isShow, setIsShow] = useState(false);
+
+  const [isShowBtn, setIsShowBtn] = useState(false);
 
   const showPortal = () => {
     setIsPortalVisible(true);
@@ -21,13 +24,20 @@ const Home = () => {
     setIsPortalVisible(false);
   };
 
-  const toNextPage = ()=>{
+  const toNextPage = () => {
     Taro.navigateTo({
-      url: 'pages/detail/xufu/detail1'
+      url: "pages/detail/xufu/detail1"
     });
-  }
+  };
 
-
+  useEffect(() => {
+    setTimeout(() => {
+      setIsShow(true);
+    }, 2000);
+    setTimeout(() => {
+      setIsShowBtn(true);
+    }, 3000);
+  }, []);
 
   return (
     <View className='xufu_home'>
@@ -35,13 +45,23 @@ const Home = () => {
         <Back />
         <Music />
       </View>
-      <View className='xufu_home_main fadeOut'>
-        <Image src={detail_logo} className='xufu_home_main_logo'></Image>
+      <View className='xufu_home_main' style={{ opacity: isShow ? 1 : 0 }}>
+        <Image
+          src={detail_logo}
+          className='xufu_home_main_logo'
+        ></Image>
       </View>
-      <View className='xufu_home_pic_product '>
+      <View className='xufu_home_pic_product'>
         <Image src={detail_product} className='xufu_home_pic scaleDraw'></Image>
-        <View className='footer_detail_con'>
-          <Image src={detail_l} className='footer_card' onClick={toNextPage}></Image>
+        <View
+          className='footer_detail_con'
+          style={{ opacity: isShowBtn ? 1 : 0 }}
+        >
+          <Image
+            src={detail_l}
+            className='footer_card'
+            onClick={toNextPage}
+          ></Image>
           {/* 产品介绍 */}
           <Image
             src={detail_r}
