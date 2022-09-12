@@ -6,12 +6,12 @@ import { Next } from "../Next/index";
 
 interface DetailProps {
   background: string; // 背景图
-  alertH: any; // 上面的弹窗内容
+  alertH?: any; // 上面的弹窗内容
   alertF: any; // 下面的弹窗内容
-  detailH: any; // 上面的了解详情
+  detailH?: any; // 上面的了解详情
   detailF: any; // 下面的了解详情
-  next: any;
-  nextPath: string;
+  next?: any;
+  nextPath?: string;
 }
 
 export const DetailItem: React.FC<DetailProps> = props => {
@@ -32,12 +32,15 @@ export const DetailItem: React.FC<DetailProps> = props => {
       </View>
       <View className='page_content'>
         <View className='detail_item_i1'>
-          <LookDetail
-            img={detailH}
-            alert={alertH}
-            selfClassName='self_look_detail'
-          />
+          {detailH && alertH && (
+            <LookDetail
+              img={detailH}
+              alert={alertH}
+              selfClassName='self_look_detail'
+            />
+          )}
         </View>
+
         <View className='detail_item_i2'>
           <LookDetail
             img={detailF}
@@ -46,7 +49,7 @@ export const DetailItem: React.FC<DetailProps> = props => {
           />
         </View>
         <View className='detail_item_next'>
-          <Next img={next} to={nextPath} />
+          {next && nextPath && <Next img={next} to={nextPath} />}
         </View>
       </View>
     </View>

@@ -50,7 +50,7 @@ const logos: Logo[] = [
   },
   {
     img: logo6,
-    path: Product.E_ER,
+    path: Product.ER_E,
     name: "二峨"
   },
   {

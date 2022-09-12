@@ -4,7 +4,7 @@ export enum Product {
   XU_FU = "xufu",
   CHI_DU = "chidu",
   TONG_CHUAN = "tongchuan",
-  E_ER = "ere",
+  ER_E = "ere",
   LI_CHUAN = "lichuan",
   CHONG_LONG = "chonglong",
   ZI_RAN_XIANG = "ziranxiang",
