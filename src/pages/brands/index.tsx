@@ -137,7 +137,7 @@ export default class PageView extends Component<{}, Istate> {
           })}
           <Image
             src={logos[ativeIndex]?.img}
-            className={`index3_logo index3_logo_center ${
+            className={`index3_logo index3_logo_center index3_logo_center_${ativeIndex} ${
               isChange ? "scaleDraw" : ""
             } logo_active`}
             onClick={this.toDetail}

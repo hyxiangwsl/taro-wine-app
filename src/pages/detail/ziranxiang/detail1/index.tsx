@@ -5,8 +5,8 @@ import detailH from "./imgs/ziranxiang_look_h_1.png";
 
 import detailF from "./imgs/ziranxiang_look_f_1.png";
 
-import alertH from "./imgs/ziranxiang_alert_h_1.png";
-import alertF from "./imgs/ziranxiang_alert_f_1.png";
+import alertH from "./imgs/ziranxiang_alert_h_1.jpg";
+import alertF from "./imgs/ziranxiang_alert_f_1.jpg";
 import next from "./imgs/ziranxiang_next_1.png";
 
 const Detail = () => {

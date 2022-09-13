@@ -5,8 +5,8 @@ import detailH from "./imgs/xueyu_look_h_1.png";
 
 import detailF from "./imgs/xueyu_look_f_1.png";
 
-import alertH from "./imgs/xueyu_alert_h_1.png";
-import alertF from "./imgs/xueyu_alert_f_1.png";
+import alertH from "./imgs/xueyu_alert_h_1.jpg";
+import alertF from "./imgs/xueyu_alert_f_1.jpg";
 import next from "./imgs/xueyu_next_1.png";
 
 const Detail = () => {
