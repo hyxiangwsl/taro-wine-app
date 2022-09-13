@@ -38,6 +38,16 @@ export default defineAppConfig({
     "pages/detail/yunbian/detail2",
     "pages/detail/yunbian/detail3",
     "pages/detail/yunbian/detail4",
+    // 礼传
+    "pages/detail/lichuan/home",
+    "pages/detail/lichuan/detail1",
+    // 通川
+    "pages/detail/tongchuan/home",
+    "pages/detail/tongchuan/detail1",
+     // 自热香
+     "pages/detail/ziranxiang/home",
+     "pages/detail/ziranxiang/detail1",
+     "pages/detail/ziranxiang/detail2",
   ],
 
   window: {
