@@ -6,7 +6,7 @@ import alert from "../imgs/alert.png";
 
 const Detail = () => {
   return (
-    <View className='guoniang_detail'>
+    <View className='guoniang_detail_1'>
       <View className='page_header'>
         <Back />
         <Music />
