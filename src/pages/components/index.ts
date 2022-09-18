@@ -4,3 +4,4 @@ export * from "./Next";
 export * from "./LookDetail";
 export * from "./Dialog";
 export * from "./DetailItem";
+export * from "./SwiperContainer";

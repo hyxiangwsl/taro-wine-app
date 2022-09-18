@@ -1,9 +1,14 @@
 import { Button, Swiper, SwiperItem, View } from "@tarojs/components";
 import { useRouter } from "@tarojs/taro";
-import { useState } from "react";
+import React, { useState } from "react";
 import "./index.less";
 
-const PageView = () => {
+interface ISwiperProps {
+  // 列表项
+  items: React.ReactNode[];
+}
+
+export const SwiperContainer = ({ items }) => {
   const router = useRouter();
   // console.log(router.params); // 参数接收
 
@@ -12,7 +17,7 @@ const PageView = () => {
 
   const handleChange = e => {
     const { detail } = e;
-    setCurrent(detail.current)
+    setCurrent(detail.current);
     console.log(detail);
   };
 
@@ -26,25 +31,18 @@ const PageView = () => {
       vertical
       disableTouch
     >
-      <SwiperItem
-        onTouchMove={(e) => {
-          e.stopPropagation();
-          e.preventDefault();
-          return;
-        }}
-      >
-        <View className='demo-text-1'>1
-          <Button onClick={()=>{setCurrent(1)}}>点我</Button>
-        </View>
-      </SwiperItem>
-      <SwiperItem>
-        <View className='demo-text-2'>2</View>
-      </SwiperItem>
-      <SwiperItem>
-        <View className='demo-text-3'>3</View>
-      </SwiperItem>
+      {items.map((item, index) => (
+        <SwiperItem
+          key={index}
+          onTouchMove={e => {
+            e.stopPropagation();
+            e.preventDefault();
+            return;
+          }}
+        >
+          {item}
+        </SwiperItem>
+      ))}
     </Swiper>
   );
 };
-
-export default PageView;
