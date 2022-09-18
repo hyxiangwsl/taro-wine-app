@@ -1,6 +1,9 @@
 import { Button, Swiper, SwiperItem, View } from "@tarojs/components";
+
 import { useRouter } from "@tarojs/taro";
 import { useState } from "react";
+import Home1 from "./chidu/home/index";
+
 import "./index.less";
 
 const PageView = () => {
@@ -12,7 +15,7 @@ const PageView = () => {
 
   const handleChange = e => {
     const { detail } = e;
-    setCurrent(detail.current)
+    setCurrent(detail.current);
     console.log(detail);
   };
 
@@ -27,18 +30,18 @@ const PageView = () => {
       disableTouch
     >
       <SwiperItem
-        onTouchMove={(e) => {
+        onTouchMove={e => {
           e.stopPropagation();
           e.preventDefault();
           return;
         }}
       >
         <View className='demo-text-1'>1
-          <Button onClick={()=>{setCurrent(1)}}>点我</Button>
+        <Button onClick={()=>{setCurrent(2)}}>点击</Button>
         </View>
       </SwiperItem>
       <SwiperItem>
-        <View className='demo-text-2'>2</View>
+        <View className='demo-text-2'><Home1 /></View>
       </SwiperItem>
       <SwiperItem>
         <View className='demo-text-3'>3</View>

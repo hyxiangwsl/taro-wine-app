@@ -1,7 +1,9 @@
 import { View, Image } from "@tarojs/components";
 import { useState, useEffect } from "react";
-import Taro from "@tarojs/taro";
+import Taro, { useRouter } from "@tarojs/taro";
 import { Back, Dialog, Music } from "@/pages/components";
+import { useDispatch } from "@/redux/hooks";
+import { contextSlice } from "@/redux/contextSlice";
 import "./index.less";
 import detail_logo from "./imgs/chidu_logo.png";
 import detail_logo1 from "./imgs/chidu_logo2.png";
@@ -9,6 +11,7 @@ import detail_product from "./imgs/chidu_product.png";
 import detail_l from "./imgs/chidu_detail_l.png";
 import detail_r from "./imgs/chidu_detail_r.png";
 import chidu_brand_desc from "./imgs/chidu_brand_desc.png";
+
 
 const Home = () => {
   const [isPortalVisible, setIsPortalVisible] = useState(false);
@@ -25,10 +28,12 @@ const Home = () => {
     setIsPortalVisible(false);
   };
 
+  const router = useRouter();
+  const dispatch = useDispatch();
+
   const toNextPage = () => {
-    Taro.navigateTo({
-      url: "pages/detail/chidu/detail1"
-    });
+    const { path } = router.params;
+    dispatch(contextSlice.actions.doNext({ path }));
   };
 
   useEffect(() => {

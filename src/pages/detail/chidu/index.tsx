@@ -1,8 +1,9 @@
-import "./index.less";
-import Home from "./home/index";
+import { SwiperContainer } from "@/pages/components/SwiperContainer/index";
+import { chiduItems } from "@/pages/index/congfig";
 
 const Chidu = () => {
-  return <Home />;
+  return <SwiperContainer items={chiduItems} />;
 };
+
 
 export default Chidu;

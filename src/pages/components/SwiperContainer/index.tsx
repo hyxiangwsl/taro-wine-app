@@ -1,37 +1,46 @@
-import { Button, Swiper, SwiperItem, View } from "@tarojs/components";
+import { Swiper, SwiperItem, Text } from "@tarojs/components";
 import { useRouter } from "@tarojs/taro";
-import React, { useState } from "react";
+import React, { Suspense } from "react";
+import { useSelector } from "@/redux/hooks";
 import "./index.less";
 
 interface ISwiperProps {
   // 列表项
-  items: React.ReactNode[];
+  items: Array<{
+    com: any;
+    path: string; // 用路径来当做id
+  }>;
+  handleChange?: () => void;
 }
 
-export const SwiperContainer = ({ items }) => {
+export const SwiperContainer: React.FC<ISwiperProps> = ({ items }) => {
+  const currentCtx = useSelector(s => s.context.current);
+  const prodList = useSelector(s => s.context.prodList || []);
+
   const router = useRouter();
-  // console.log(router.params); // 参数接收
+  const { path } = router.params;
 
-  // 滑块下标
-  const [current, setCurrent] = useState(0);
+  // 默认是首页的下标
+  let current = currentCtx;
+  if (path) {
+    console.log("prodCurrent", prodList);
+    // 如果是产品里面的话
+    current = prodList.find(v => v.name === path)?.current || 0;
+  }
 
-  const handleChange = e => {
-    const { detail } = e;
-    setCurrent(detail.current);
-    console.log(detail);
-  };
+  console.log("current", current, "path", path);
 
   return (
     <Swiper
       className='test-h'
       indicatorColor='#999'
       indicatorActiveColor='#333'
-      onChange={handleChange}
+      // onChange={handleChange}
       current={current}
       vertical
       disableTouch
     >
-      {items.map((item, index) => (
+      {items.map(({ com: Com }, index) => (
         <SwiperItem
           key={index}
           onTouchMove={e => {
@@ -40,7 +49,9 @@ export const SwiperContainer = ({ items }) => {
             return;
           }}
         >
-          {item}
+          <Suspense fallback={<Text>Loading...</Text>}>
+            <Com />
+          </Suspense>
         </SwiperItem>
       ))}
     </Swiper>

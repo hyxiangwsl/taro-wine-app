@@ -7,7 +7,7 @@ import index2_btitle from "./imgs/index2_5.png";
 import index2_desc from "./imgs/index2_2.png";
 import index2_pic from "./imgs/index2_6.png";
 import index2_pic_bt from "./imgs/index2_7.png";
-import next from './imgs/index2_next.png';
+import next from "./imgs/index2_next.png";
 
 export default class PageView extends Component {
   render() {
@@ -26,7 +26,7 @@ export default class PageView extends Component {
           <Image src={index2_pic_bt} className='index2_pic_bt'></Image>
         </View>
 
-        <Next to='/pages/brands/index' img={next} className='index2_next' />
+        <Next img={next} className='index2_next' />
       </View>
     );
   }

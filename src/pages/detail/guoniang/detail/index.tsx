@@ -17,7 +17,7 @@ const Detail = () => {
         <Image src={detail_btitle} className='guoniang_detail_bt'></Image>
       </View> */}
 
-      <LookDetail img={img} alert={alert} />
+      <LookDetail img={img} alert={alert} selfClassName='self_look_detail' />
     </View>
   );
 };

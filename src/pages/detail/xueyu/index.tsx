@@ -1,8 +1,9 @@
-import "./index.less";
-import Home from "./home/index";
+import { SwiperContainer } from "@/pages/components/SwiperContainer/index";
+import { xueyuItems } from "@/pages/index/congfig";
 
 const Xueyu = () => {
-  return <Home />;
+  return <SwiperContainer items={xueyuItems} />;
 };
+
 
 export default Xueyu;

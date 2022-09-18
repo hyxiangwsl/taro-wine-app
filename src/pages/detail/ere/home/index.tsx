@@ -1,6 +1,8 @@
 import { View, Image } from "@tarojs/components";
 import { useState, useEffect } from "react";
-import Taro from "@tarojs/taro";
+import Taro, { useRouter } from "@tarojs/taro";
+import { useDispatch } from "@/redux/hooks";
+import { contextSlice } from "@/redux/contextSlice";
 import { Back, Dialog, Music } from "@/pages/components";
 import "./index.less";
 import detail_logo from "./imgs/ere_logo.png";
@@ -24,11 +26,12 @@ const Home = () => {
   const hidePortal = () => {
     setIsPortalVisible(false);
   };
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const toNextPage = () => {
-    Taro.navigateTo({
-      url: "pages/detail/ere/detail1"
-    });
+    const { path } = router.params;
+    dispatch(contextSlice.actions.doNext({ path }));
   };
 
   useEffect(() => {
@@ -51,10 +54,7 @@ const Home = () => {
         <Image src={detail_logo1} className='ere_home_main_logo2'></Image>
       </View>
       <View className='ere_home_pic_product'>
-        <Image
-          src={detail_product}
-          className='ere_home_pic scaleDraw'
-        ></Image>
+        <Image src={detail_product} className='ere_home_pic scaleDraw'></Image>
         <View
           className='footer_detail_con'
           style={{ opacity: isShowBtn ? 1 : 0 }}

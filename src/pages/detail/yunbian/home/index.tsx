@@ -1,7 +1,9 @@
 import { View, Image } from "@tarojs/components";
 import { useState, useEffect } from "react";
-import Taro from "@tarojs/taro";
+import Taro, { useRouter } from "@tarojs/taro";
 import { Back, Dialog, Music } from "@/pages/components";
+import { useDispatch } from "@/redux/hooks";
+import { contextSlice } from "@/redux/contextSlice";
 import "./index.less";
 import detail_logo from "./imgs/yunbian_logo.png";
 import detail_logo1 from "./imgs/yunbian_logo1.png";
@@ -25,10 +27,12 @@ const Home = () => {
     setIsPortalVisible(false);
   };
 
+  const router = useRouter();
+  const dispatch = useDispatch();
+
   const toNextPage = () => {
-    Taro.navigateTo({
-      url: "pages/detail/yunbian/detail1"
-    });
+    const { path } = router.params;
+    dispatch(contextSlice.actions.doNext({ path }));
   };
 
   useEffect(() => {
@@ -47,14 +51,14 @@ const Home = () => {
         <Music />
       </View>
       <View className='yunbian_home_main' style={{ opacity: isShow ? 1 : 0 }}>
-        <Image
-          src={detail_logo}
-          className='yunbian_home_main_logo'
-        ></Image>
+        <Image src={detail_logo} className='yunbian_home_main_logo'></Image>
         <Image src={detail_logo1} className='yunbian_home_main_logo2'></Image>
       </View>
       <View className='yunbian_home_pic_product'>
-        <Image src={detail_product} className='yunbian_home_pic scaleDraw'></Image>
+        <Image
+          src={detail_product}
+          className='yunbian_home_pic scaleDraw'
+        ></Image>
         <View
           className='footer_detail_con'
           style={{ opacity: isShowBtn ? 1 : 0 }}

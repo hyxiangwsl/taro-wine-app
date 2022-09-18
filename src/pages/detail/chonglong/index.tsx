@@ -1,8 +1,8 @@
-import "./index.less";
-import Home from "./home/index";
+import { SwiperContainer } from "@/pages/components/SwiperContainer/index";
+import { chonglongItems } from "@/pages/index/congfig";
 
 const Chonglong = () => {
-  return <Home />;
+  return <SwiperContainer items={chonglongItems} />;
 };
 
 export default Chonglong;

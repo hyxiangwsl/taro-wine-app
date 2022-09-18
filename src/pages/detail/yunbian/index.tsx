@@ -1,8 +1,9 @@
-import "./index.less";
-import Home from "./home/index";
+import { SwiperContainer } from "@/pages/components/SwiperContainer/index";
+import { yunbianItems } from "@/pages/index/congfig";
 
 const Yunbian = () => {
-  return <Home />;
+  return <SwiperContainer items={yunbianItems} />;
 };
+
 
 export default Yunbian;

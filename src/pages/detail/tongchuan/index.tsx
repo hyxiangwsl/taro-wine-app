@@ -1,8 +1,9 @@
-import "./index.less";
-import Home from "./home/index";
+import { SwiperContainer } from "@/pages/components/SwiperContainer/index";
+import { tongchuanItems } from "@/pages/index/congfig";
 
 const Tongchuan = () => {
-  return <Home />;
+  return <SwiperContainer items={tongchuanItems} />;
 };
+
 
 export default Tongchuan;

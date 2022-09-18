@@ -1,53 +1,28 @@
 export default defineAppConfig({
   pages: [
+    // 主页
     "pages/index/index",
-    "pages/company/index",
-    "pages/brands/index",
-    "pages/detail/index",
+
     // 国酿
-    "pages/detail/guoniang/home",
-    "pages/detail/guoniang/detail",
+    "pages/detail/guoniang/index",
     // 叙府
-    "pages/detail/xufu/home",
-    "pages/detail/xufu/detail1",
-    "pages/detail/xufu/detail2",
-    "pages/detail/xufu/detail3",
-    "pages/detail/xufu/detail4",
-    "pages/detail/xufu/detail5",
-    "pages/detail/xufu/detail6",
+    "pages/detail/xufu/index",
     // 赤渡
-    "pages/detail/chidu/home",
-    "pages/detail/chidu/detail1",
-    "pages/detail/chidu/detail2",
+    "pages/detail/chidu/index",
     // 二峨
-    "pages/detail/ere/home",
-    "pages/detail/ere/detail1",
-    "pages/detail/ere/detail2",
-    "pages/detail/ere/detail3",
+    "pages/detail/ere/index",
     // 重龙
-    "pages/detail/chonglong/home",
-    "pages/detail/chonglong/detail1",
-    "pages/detail/chonglong/detail2",
+    "pages/detail/chonglong/index",
     // 雪域
-    "pages/detail/xueyu/home",
-    "pages/detail/xueyu/detail1",
-    "pages/detail/xueyu/detail2",
+    "pages/detail/xueyu/index",
     // 云边
-    "pages/detail/yunbian/home",
-    "pages/detail/yunbian/detail1",
-    "pages/detail/yunbian/detail2",
-    "pages/detail/yunbian/detail3",
-    "pages/detail/yunbian/detail4",
+    "pages/detail/yunbian/index",
     // 礼传
-    "pages/detail/lichuan/home",
-    "pages/detail/lichuan/detail1",
+    "pages/detail/lichuan/index",
     // 通川
-    "pages/detail/tongchuan/home",
-    "pages/detail/tongchuan/detail1",
-     // 自热香
-     "pages/detail/ziranxiang/home",
-     "pages/detail/ziranxiang/detail1",
-     "pages/detail/ziranxiang/detail2",
+    "pages/detail/tongchuan/index",
+    // 自热香
+    "pages/detail/ziranxiang/index"
   ],
 
   window: {

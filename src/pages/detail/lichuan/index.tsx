@@ -1,8 +1,9 @@
-import "./index.less";
-import Home from "./home/index";
+import { SwiperContainer } from "@/pages/components/SwiperContainer/index";
+import { lichuanItems } from "@/pages/index/congfig";
 
 const Lichuan = () => {
-  return <Home />;
+  return <SwiperContainer items={lichuanItems} />;
 };
 
 export default Lichuan;
+

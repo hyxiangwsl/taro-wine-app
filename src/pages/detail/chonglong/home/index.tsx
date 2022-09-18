@@ -1,7 +1,9 @@
 import { View, Image } from "@tarojs/components";
 import { useState, useEffect } from "react";
-import Taro from "@tarojs/taro";
+import Taro, { useRouter } from "@tarojs/taro";
 import { Back, Dialog, Music } from "@/pages/components";
+import { useDispatch } from "@/redux/hooks";
+import { contextSlice } from "@/redux/contextSlice";
 import "./index.less";
 import detail_logo from "./imgs/chonglong_logo.png";
 import detail_logo1 from "./imgs/chonglong_logo2.png";
@@ -25,10 +27,12 @@ const Home = () => {
     setIsPortalVisible(false);
   };
 
+  const router = useRouter();
+  const dispatch = useDispatch();
+
   const toNextPage = () => {
-    Taro.navigateTo({
-      url: "pages/detail/chonglong/detail1"
-    });
+    const { path } = router.params;
+    dispatch(contextSlice.actions.doNext({ path }));
   };
 
   useEffect(() => {

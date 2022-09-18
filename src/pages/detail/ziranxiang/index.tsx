@@ -1,8 +1,9 @@
-import "./index.less";
-import Home from "./home/index";
+import { SwiperContainer } from "@/pages/components/SwiperContainer/index";
+import { ziranxiangItems } from "@/pages/index/congfig";
 
 const Ziranxiang = () => {
-  return <Home />;
+  return <SwiperContainer items={ziranxiangItems} />;
 };
+
 
 export default Ziranxiang;

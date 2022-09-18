@@ -80,7 +80,12 @@ interface Istate {
   isChange: boolean; // 是否改变logo
   path: string;
 }
-export default class PageView extends Component<{}, Istate> {
+interface IProps {
+  next: (path: string) => void;
+  back: () => void;
+}
+
+export default class PageView extends Component<IProps, Istate> {
   state = {
     ativeIndex: 1,
     isChange: true,
@@ -108,7 +113,7 @@ export default class PageView extends Component<{}, Istate> {
   toDetail = () => {
     const { path } = this.state;
     Taro.navigateTo({
-      url: `/pages/detail/${path}/home?path=${path}` // 去到首页
+      url: `/pages/detail/${path}/index?path=${path}` // 去到各个页面
     });
   };
 
@@ -131,6 +136,7 @@ export default class PageView extends Component<{}, Istate> {
                 src={item.img}
                 onClick={() => {
                   this.handleClick(index, item);
+                  // doNext={()=>{_next('/pages/brands/index')}}
                 }}
               ></Image>
             );

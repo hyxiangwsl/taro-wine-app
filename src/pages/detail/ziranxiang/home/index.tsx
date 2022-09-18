@@ -1,7 +1,9 @@
 import { View, Image } from "@tarojs/components";
 import { useState, useEffect } from "react";
-import Taro from "@tarojs/taro";
+import Taro, { useRouter } from "@tarojs/taro";
 import { Back, Dialog, Music } from "@/pages/components";
+import { useDispatch } from "@/redux/hooks";
+import { contextSlice } from "@/redux/contextSlice";
 import "./index.less";
 import detail_logo from "./imgs/ziranxiang_logo.png";
 import detail_logo1 from "./imgs/ziranxiang_logo2.png";
@@ -25,10 +27,12 @@ const Home = () => {
     setIsPortalVisible(false);
   };
 
+  const router = useRouter();
+  const dispatch = useDispatch();
+
   const toNextPage = () => {
-    Taro.navigateTo({
-      url: "pages/detail/ziranxiang/detail1"
-    });
+    const { path } = router.params;
+    dispatch(contextSlice.actions.doNext({ path }));
   };
 
   useEffect(() => {
@@ -46,9 +50,15 @@ const Home = () => {
         <Back />
         <Music />
       </View>
-      <View className='ziranxiang_home_main' style={{ opacity: isShow ? 1 : 0 }}>
+      <View
+        className='ziranxiang_home_main'
+        style={{ opacity: isShow ? 1 : 0 }}
+      >
         <Image src={detail_logo} className='ziranxiang_home_main_logo'></Image>
-        <Image src={detail_logo1} className='ziranxiang_home_main_logo2'></Image>
+        <Image
+          src={detail_logo1}
+          className='ziranxiang_home_main_logo2'
+        ></Image>
       </View>
       <View className='ziranxiang_home_pic_product'>
         <Image
