@@ -1,8 +1,10 @@
 import { Swiper, SwiperItem, Text } from "@tarojs/components";
 import { useRouter } from "@tarojs/taro";
 import React, { Suspense } from "react";
-import { useSelector } from "@/redux/hooks";
+import { contextSlice } from "@/redux/contextSlice";
+import { useDispatch, useSelector } from "@/redux/hooks";
 import "./index.less";
+
 
 interface ISwiperProps {
   // 列表项
@@ -10,13 +12,12 @@ interface ISwiperProps {
     com: any;
     path: string; // 用路径来当做id
   }>;
-  handleChange?: () => void;
 }
 
 export const SwiperContainer: React.FC<ISwiperProps> = ({ items }) => {
   const currentCtx = useSelector(s => s.context.current);
   const prodList = useSelector(s => s.context.prodList || []);
-
+  const dispatch = useDispatch();
   const router = useRouter();
   const { path } = router.params;
 
@@ -28,6 +29,14 @@ export const SwiperContainer: React.FC<ISwiperProps> = ({ items }) => {
     current = prodList.find(v => v.name === path)?.current || 0;
   }
 
+  const handleChange = e => {
+    const { detail } = e;
+    dispatch(
+      contextSlice.actions.changeCurrent({ path, current: detail.current })
+    );
+    console.log("eee", e);
+  };
+
   console.log("current", current, "path", path);
 
   return (
@@ -35,7 +44,7 @@ export const SwiperContainer: React.FC<ISwiperProps> = ({ items }) => {
       className='test-h'
       indicatorColor='#999'
       indicatorActiveColor='#333'
-      // onChange={handleChange}
+      onChange={handleChange}
       current={current}
       vertical
       disableTouch
@@ -43,11 +52,11 @@ export const SwiperContainer: React.FC<ISwiperProps> = ({ items }) => {
       {items.map(({ com: Com }, index) => (
         <SwiperItem
           key={index}
-          onTouchMove={e => {
-            e.stopPropagation();
-            e.preventDefault();
-            return;
-          }}
+          // onTouchMove={e => {
+          //   e.stopPropagation();
+          //   e.preventDefault();
+          //   return;
+          // }}
         >
           <Suspense fallback={<Text>Loading...</Text>}>
             <Com />

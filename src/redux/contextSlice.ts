@@ -32,6 +32,18 @@ export const contextSlice = createSlice({
   reducers: {
     // 改变下标
     changeCurrent: (state, { payload }) => {
+      if (payload && payload?.path) {
+        // 如果是产品里面的话
+        return {
+          ...state,
+          prodList: state.prodList.map(item =>
+            item.name === payload.path
+              ? { ...item, current: payload.current }
+              : item
+          )
+        };
+      }
+
       return {
         ...state,
         current: payload.current
