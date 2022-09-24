@@ -54,16 +54,16 @@ const Home = () => {
           className='footer_detail_con'
           style={{ opacity: isShowBtn ? 1 : 0 }}
         >
-          <Image
-            src={detail_l}
-            className='footer_card'
-            onClick={toNextPage}
-          ></Image>
-          {/* 产品介绍 */}
+          {/* 产品介绍 新增:替换位置*/}
           <Image
             src={detail_r}
             className='footer_card'
             onClick={showPortal}
+          ></Image>
+          <Image
+            src={detail_l}
+            className='footer_card'
+            onClick={toNextPage}
           ></Image>
         </View>
       </View>

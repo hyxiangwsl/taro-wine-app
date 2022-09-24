@@ -1,6 +1,6 @@
 
 import { DetailItem } from "@/pages/components";
-import detailF from "@/pages/detail/xufu/detail1/imgs/xufu_look_f_1.png";
+import detailF from "@/pages/detail/xufu/detail1/imgs/xufu_look_h_1.png";
 import "./index.less";
 
 import alertF from "./imgs/xufu_alert_f_6.png";
