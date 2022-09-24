@@ -100,6 +100,25 @@ export const contextSlice = createSlice({
         current: state.current + 1
       };
     },
+    // 设置下标为0
+    setCurrentInit: (state, { payload }) => {
+      if (payload && payload?.path) {
+        // 如果是产品里面的话
+        return {
+          ...state,
+          prodList: state.prodList.map(item =>
+            item.name === payload.path
+              ? { ...item, current: 0 }
+              : item
+          )
+        };
+      }
+
+      return {
+        ...state,
+        current: state.current - 1
+      };
+    },
     // 清空下标
     clear: () => {
       return defaultState;

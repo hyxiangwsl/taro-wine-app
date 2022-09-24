@@ -18,7 +18,11 @@ export const Back: React.FC<IProps> = props => {
   const { path } = router.params;
 
   const doBack = () => {
-    dispatch(contextSlice.actions.preCurrent({ path }));
+    if (path) {
+      Taro.navigateBack();
+    }
+    // 重置0 或者第一页上翻
+    dispatch(contextSlice.actions.setCurrentInit({ path }));
   };
   return <Image src={img} className='music' onClick={doBack} />;
 };

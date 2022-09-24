@@ -19,7 +19,7 @@ const PageView = () => {
   }, []);
 
   const toNextPage = () => {
-    dispatch(contextSlice.actions.doNext());
+    dispatch(contextSlice.actions.doNext({}));
   };
 
   return (
