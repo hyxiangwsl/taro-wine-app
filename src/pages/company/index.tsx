@@ -6,7 +6,7 @@ import index2_title from "./imgs/index2_4.png";
 import index2_btitle from "./imgs/index2_5.png";
 import index2_desc from "./imgs/index2_2.png";
 import index2_pic from "./imgs/index2_6.png";
-import index2_pic_bt from "./imgs/index2_7.png";
+// import index2_pic_bt from "./imgs/index2_7.png";
 import next from "./imgs/index2_next.png";
 
 export default class PageView extends Component {
@@ -23,7 +23,7 @@ export default class PageView extends Component {
         </View>
         <View className='index2_pic_con fadeOut'>
           <Image src={index2_pic} className='index2_pic'></Image>
-          <Image src={index2_pic_bt} className='index2_pic_bt'></Image>
+          {/* <Image src={index2_pic_bt} className='index2_pic_bt'></Image> */}
         </View>
 
         <Next img={next} className='index2_next' />

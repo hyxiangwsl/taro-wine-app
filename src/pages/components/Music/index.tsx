@@ -6,10 +6,11 @@ import mp3 from "./imgs/bgm.mp3";
 import "./index.less";
 
 export const Music = () => {
+  // let innerAudioContext;
   // useEffect(() => {
   //   console.log("ssss");
-  //   const innerAudioContext = Taro.createInnerAudioContext();
-  //   innerAudioContext.autoplay = true;
+  //   innerAudioContext = Taro.createInnerAudioContext();
+  //   // innerAudioContext.autoplay = true;
   //   innerAudioContext.loop = true;
   //   innerAudioContext.src = mp3;
   //   innerAudioContext.onPlay(() => {
@@ -26,5 +27,18 @@ export const Music = () => {
   //   };
   // }, []);
 
-  return <Image src={img} className='music active' />;
+  // const doPlay = () => {
+  //   innerAudioContext.autoplay = true;
+  //   // innerAudioContext.play();
+  // };
+
+  return (
+    <Image
+      src={img}
+      className='music active'
+      onClick={() => {
+        // doPlay();
+      }}
+    />
+  );
 };
