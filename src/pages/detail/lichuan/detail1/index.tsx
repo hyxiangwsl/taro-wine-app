@@ -7,7 +7,6 @@ import detailF from "./imgs/lichuan_look_f_1.png";
 
 import alertH from "./imgs/lichuan_alert_h_1.png";
 import alertF from "./imgs/lichuan_alert_f_1.png";
-import next from "./imgs/lichuan_next_1.png";
 
 const Detail = () => {
   return (

@@ -3,6 +3,8 @@ import React from "react";
 import { Back, LookDetail, Music } from "@/pages/components";
 import "./index.less";
 import { Next } from "../Next/index";
+import { useRouter } from "@tarojs/taro";
+import { Product } from "../../brands/Product";
 
 interface DetailProps {
   background: string; // 背景图
@@ -12,7 +14,7 @@ interface DetailProps {
   detailF: any; // 下面的了解详情
   next?: any;
   nextPath?: string;
-  isBlack?:boolean;// 返回和音乐键是否黑色
+  isBlack?: boolean; // 返回和音乐键是否黑色
 }
 
 export const DetailItem: React.FC<DetailProps> = props => {
@@ -26,6 +28,12 @@ export const DetailItem: React.FC<DetailProps> = props => {
     nextPath,
     isBlack = false
   } = props;
+
+  const router = useRouter();
+  const { path } = router.params;
+
+  const isGuoniang = path === Product.GUO_NIANG;
+
   return (
     <View className={`detail_item_con ${background}`}>
       <View className='page_header'>
@@ -45,7 +53,13 @@ export const DetailItem: React.FC<DetailProps> = props => {
 
         <View
           className={`detail_item_i2 ${
-            !detailH || next ? "" : "detail_item_i2_bt"
+            isGuoniang
+              ? "detail_item_i2_guoniang"
+              : !detailH
+              ? "detail_item_i2_md"
+              : next
+              ? ""
+              : "detail_item_i2_bt"
           }`}
         >
           <LookDetail

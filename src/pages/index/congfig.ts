@@ -22,7 +22,7 @@ export const guoniangItems = [
     path: "/pages/detail/guoniang/home"
   },
   {
-    com:  React.lazy(() => import("@/pages/detail/guoniang/detail")),
+    com:  React.lazy(() => import("@/pages/detail/guoniang/detail1")),
     path: "/pages/detail/guoniang/detail"
   }
 ];

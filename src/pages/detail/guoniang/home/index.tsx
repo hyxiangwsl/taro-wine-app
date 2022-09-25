@@ -1,7 +1,7 @@
 import { View, Image } from "@tarojs/components";
 import { Back, Music, Next } from "@/pages/components";
 import "./index.less";
-import detail_logo from "./imgs/logo.png";
+import detail_logo from "./imgs/guoniang_logo.png";
 import next from './imgs/guoniang_next.png';
 
 const Home = () => {

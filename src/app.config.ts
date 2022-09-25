@@ -2,7 +2,6 @@ export default defineAppConfig({
   pages: [
     // 主页
     "pages/index/index",
-
     // 国酿
     "pages/detail/guoniang/index",
     // 叙府
