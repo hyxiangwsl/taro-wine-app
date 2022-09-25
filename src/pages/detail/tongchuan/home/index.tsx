@@ -50,30 +50,26 @@ const Home = () => {
         <Back />
         <Music />
       </View>
-      <View className='tongchuan_home_main' style={{ opacity: isShow ? 1 : 0 }}>
-        <Image src={detail_logo} className='tongchuan_home_main_logo'></Image>
-        <Image src={detail_logo1} className='tongchuan_home_main_logo2'></Image>
+      <View className='tongchuan_home_main' >
+        <Image src={detail_logo} className='tongchuan_home_main_logo fadeOut'></Image>
       </View>
       <View className='tongchuan_home_pic_product'>
-        <Image
-          src={detail_product}
-          className='tongchuan_home_pic scaleDraw'
-        ></Image>
         <View
           className='footer_detail_con'
           style={{ opacity: isShowBtn ? 1 : 0 }}
         >
-          <Image
-            src={detail_l}
-            className='footer_card'
-            onClick={toNextPage}
-          ></Image>
           {/* 产品介绍 */}
           <Image
             src={detail_r}
             className='footer_card'
             onClick={showPortal}
           ></Image>
+          <Image
+            src={detail_l}
+            className='footer_card'
+            onClick={toNextPage}
+          ></Image>
+
         </View>
       </View>
       {isPortalVisible && (
