@@ -12,8 +12,8 @@ const Home = () => {
         <Back />
         <Music />
       </View>
-      <View className='guoniang_home_main fadeOut'>
-        <Image src={detail_logo} className='guoniang_home_main_logo'></Image>
+      <View className='guoniang_home_main'>
+        <Image src={detail_logo} className='guoniang_home_main_logo fadeOut'></Image>
       </View>
       {/* 跳转下一页 */}
       <Next className='guoniang_home_next' img={next} />

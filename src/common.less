@@ -4,12 +4,12 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 0 26px;
 }
 
 .page_content {
   flex: 1;
   height: 100%;
+  width: 100vw;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -19,16 +19,26 @@
 .footer_detail_con {
   position: absolute;
   bottom: 5%;
+  left: 50%;
+  width: 75%;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
   .footer_card {
     width: auto;
     height: 30px;
   }
+  .footer_card + .footer_card {
+    margin-left: 10vh;
+  }
 }
 
-.flex1{
+.flex1 {
   flex: 1;
 }
+
+// :global{
+//   .taro-image-core{
+//     object-fit: contain !important;
+//   }
+// }

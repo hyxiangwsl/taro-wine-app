@@ -1,9 +1,9 @@
 import { View } from "@tarojs/components";
 import React from "react";
+import { useRouter } from "@tarojs/taro";
 import { Back, LookDetail, Music } from "@/pages/components";
 import "./index.less";
 import { Next } from "../Next/index";
-import { useRouter } from "@tarojs/taro";
 import { Product } from "../../brands/Product";
 
 interface DetailProps {

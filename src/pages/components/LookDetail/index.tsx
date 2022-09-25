@@ -28,7 +28,7 @@ export const LookDetail: React.FC<NextProps> = ({
   };
 
   return (
-    <View>
+    <>
       <Image
         src={img}
         className={`look_detail ${selfClassName}`}
@@ -41,6 +41,6 @@ export const LookDetail: React.FC<NextProps> = ({
           </View>
         </Dialog>
       )}
-    </View>
+    </>
   );
 };
