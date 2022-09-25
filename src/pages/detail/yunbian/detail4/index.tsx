@@ -1,6 +1,6 @@
 
 import { DetailItem } from "@/pages/components";
-import detailF from "@/pages/detail/yunbian/detail1/imgs/yunbian_look_f_1.png";
+import detailF from "@/pages/detail/yunbian/detail1/imgs/yunbian_look_h_1.png";
 import "./index.less";
 
 import alertF from "./imgs/yunbian_alert_f_4.png";
