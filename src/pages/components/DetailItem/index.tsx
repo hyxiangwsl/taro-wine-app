@@ -12,6 +12,7 @@ interface DetailProps {
   detailF: any; // 下面的了解详情
   next?: any;
   nextPath?: string;
+  isBlack?:boolean;// 返回和音乐键是否黑色
 }
 
 export const DetailItem: React.FC<DetailProps> = props => {
@@ -22,13 +23,14 @@ export const DetailItem: React.FC<DetailProps> = props => {
     alertF,
     alertH,
     next,
-    nextPath
+    nextPath,
+    isBlack = false
   } = props;
   return (
     <View className={`detail_item_con ${background}`}>
       <View className='page_header'>
-        <Back />
-        <Music />
+        <Back isBlack={isBlack} />
+        <Music isBlack={isBlack} />
       </View>
       <View className='page_content'>
         <View className='detail_item_i1'>

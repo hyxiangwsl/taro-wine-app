@@ -4,10 +4,11 @@ import { Image } from "@tarojs/components";
 import { useDispatch } from "@/redux/hooks";
 import { contextSlice } from "@/redux/contextSlice";
 import img from "./imgs/index2_9.png";
+import img_b from './imgs/index2_9_black.png';
 import "./index.less";
 
 interface IProps {
-  isPre?: boolean;
+  isBlack?: boolean;// 是否是黑色的
 }
 
 export const Back: React.FC<IProps> = props => {
@@ -29,5 +30,5 @@ export const Back: React.FC<IProps> = props => {
       dispatch(contextSlice.actions.setCurrentInit({ path }));
     }
   };
-  return <Image src={img} className='music' onClick={doBack} />;
+  return <Image src={props.isBlack?img_b:img} className='music' onClick={doBack} />;
 };
