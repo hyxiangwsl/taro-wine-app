@@ -41,7 +41,11 @@ export const DetailItem: React.FC<DetailProps> = props => {
           )}
         </View>
 
-        <View className='detail_item_i2'>
+        <View
+          className={`detail_item_i2 ${
+            !detailH || next ? "" : "detail_item_i2_bt"
+          }`}
+        >
           <LookDetail
             img={detailF}
             alert={alertF}
