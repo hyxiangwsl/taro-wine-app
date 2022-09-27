@@ -8,11 +8,10 @@ import next from "./imgs/index2_next.png";
 export default class PageView extends Component {
   render() {
     return (
-      <View className='index2'>
+      <View className='compony_index2'>
         <View className='index2_header'>
           <Music />
         </View>
-
         <Next img={next} className='index2_next' />
       </View>
     );
