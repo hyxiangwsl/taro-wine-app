@@ -16,7 +16,6 @@ const Detail = () => {
       detailH={detailH}
       alertF={alertF}
       detailF={detailF}
-      isBlack
       // next={next}
       // nextPath='/pages/detail/lichuan/detail2'
     />
