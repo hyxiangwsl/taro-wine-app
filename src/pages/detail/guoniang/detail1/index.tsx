@@ -4,7 +4,7 @@ import "./index.less";
 
 import detailF from "./imgs/guoniang_look_f_1.png";
 
-import alertF from "./imgs/guoniang_alert_f_1.jpg";
+import alertF from "./imgs/guoniang_alert_f_1.png";
 
 const Detail = () => {
   return (
