@@ -1,13 +1,10 @@
 import { View, Image } from "@tarojs/components";
 import { useState, useEffect } from "react";
-import Taro, { useRouter } from "@tarojs/taro";
 import { Back, Dialog, Music } from "@/pages/components";
-import { useDispatch } from "@/redux/hooks";
+import { useDispatch, useSelector } from "@/redux/hooks";
 import { contextSlice } from "@/redux/contextSlice";
 import "./index.less";
 import detail_logo from "./imgs/tongchuan_logo.png";
-import detail_logo1 from "./imgs/tongchuan_logo2.png";
-import detail_product from "./imgs/tongchuan_product.png";
 import detail_l from "./imgs/tongchuan_detail_l.png";
 import detail_r from "./imgs/tongchuan_detail_r.png";
 import tongchuan_brand_desc from "./imgs/tongchuan_brand_desc.png";
@@ -15,7 +12,7 @@ import tongchuan_brand_desc from "./imgs/tongchuan_brand_desc.png";
 const Home = () => {
   const [isPortalVisible, setIsPortalVisible] = useState(false);
 
-  const [isShow, setIsShow] = useState(false);
+  // const [isShow, setIsShow] = useState(false);
 
   const [isShowBtn, setIsShowBtn] = useState(false);
 
@@ -27,18 +24,17 @@ const Home = () => {
     setIsPortalVisible(false);
   };
 
-  const router = useRouter();
   const dispatch = useDispatch();
+  const currentProduct = useSelector(s => s.context.currentProduct);
 
   const toNextPage = () => {
-    const { path } = router.params;
-    dispatch(contextSlice.actions.doNext({ path }));
+    dispatch(contextSlice.actions.doNext({ product:currentProduct  }));
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsShow(true);
-    }, 2000);
+    // setTimeout(() => {
+    //   setIsShow(true);
+    // }, 2000);
     setTimeout(() => {
       setIsShowBtn(true);
     }, 3000);

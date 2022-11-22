@@ -1,6 +1,8 @@
 import { View, Image } from "@tarojs/components";
-import { Component } from "react";
-import Taro from "@tarojs/taro";
+import React, {  useState } from "react";
+import { contextSlice } from "@/redux/contextSlice";
+import { useDispatch } from "@/redux/hooks";
+
 import { Back, Music } from "../components";
 import "./index.less";
 import text from "./imgs/index3_text.png";
@@ -75,85 +77,76 @@ const logos: Logo[] = [
   }
 ];
 
-interface Istate {
-  ativeIndex: number;
-  isChange: boolean; // 是否改变logo
-  path: string;
-}
 interface IProps {
   next: (path: string) => void;
   back: () => void;
 }
 
-export default class PageView extends Component<IProps, Istate> {
-  state = {
-    ativeIndex: 1,
-    isChange: true,
-    path: "guoniang"
-  };
+const PageView: React.FC<IProps> = () => {
+  const [ativeIndex, setAtiveIndex] = useState<number>(1);
+  const [isChange, setIsChange] = useState<boolean>(true);
+  const [path, setPath] = useState<string>("guoniang");
+  const dispatch = useDispatch();
 
-  handleClick = (index: number, item: Logo) => {
-    const { ativeIndex } = this.state;
+  const handleClick = (index: number, item: Logo) => {
     if (ativeIndex !== index) {
-      this.setState({
-        isChange: false
-      });
+      setIsChange(false);
 
       // 设置延迟 让动画出来
       setTimeout(() => {
-        this.setState({
-          isChange: true,
-          ativeIndex: index,
-          path: item.path
-        });
+        setAtiveIndex(index);
+        setIsChange(true);
+        setPath(item.path);
+        // this.setState({
+        //   isChange: true,
+        //   ativeIndex: index,
+        //   path: item.path
+        // });
       }, 200);
     }
   };
 
-  toDetail = () => {
-    const { path } = this.state;
-    Taro.navigateTo({
-      url: `/pages/detail/${path}/index?path=${path}` // 去到各个页面
-    });
+  const toDetail = () => {
+    // 设置store的path
+    dispatch(contextSlice.actions.setCurrentProduct({ product: path }));
   };
 
-  render() {
-    const { ativeIndex, isChange } = this.state;
-    return (
-      <View className='index3'>
-        <View className='index3_header'>
-          <Back />
-          <Music />
-        </View>
-        <View className='index3_main'>
-          {logos.map((item, index) => {
-            return (
-              <Image
-                key={index}
-                className={`index3_logo index3_position${index} ${
-                  ativeIndex === index ? "logo_active" : ""
-                }`}
-                src={item.img}
-                onClick={() => {
-                  this.handleClick(index, item);
-                  // doNext={()=>{_next('/pages/brands/index')}}
-                }}
-              ></Image>
-            );
-          })}
-          <Image
-            src={logos[ativeIndex]?.img}
-            className={`index3_logo index3_logo_center index3_logo_center_${ativeIndex} ${
-              isChange ? "scaleDraw" : ""
-            } logo_active`}
-            onClick={this.toDetail}
-          ></Image>
-        </View>
-
-        <View>
-          <Image className='index3_text' src={text}></Image>
-        </View>
+  return (
+    <View className='index3'>
+      <View className='index3_header'>
+        <Back />
+        <Music />
       </View>
-    );
-  }
-}
+      <View className='index3_main'>
+        {logos.map((item, index) => {
+          return (
+            <Image
+              key={index}
+              className={`index3_logo index3_position${index} ${
+                ativeIndex === index ? "logo_active" : ""
+              }`}
+              src={item.img}
+              onClick={() => {
+                handleClick(index, item);
+                // doNext={()=>{_next('/pages/brands/index')}}
+              }}
+            ></Image>
+          );
+        })}
+        <Image
+          src={logos[ativeIndex]?.img}
+          className={`index3_logo index3_logo_center index3_logo_center_${ativeIndex} ${
+            isChange ? "scaleDraw" : ""
+          } logo_active`}
+          onClick={toDetail}
+        ></Image>
+      </View>
+
+      <View>
+        <Image className='index3_text' src={text}></Image>
+      </View>
+    </View>
+  );
+};
+
+export default PageView;

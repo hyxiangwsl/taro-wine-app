@@ -1,14 +1,10 @@
 import { Button, Swiper, SwiperItem, View } from "@tarojs/components";
-
-import { useRouter } from "@tarojs/taro";
 import { useState } from "react";
 import Home1 from "./chidu/home/index";
 
 import "./index.less";
 
 const PageView = () => {
-  const router = useRouter();
-  // console.log(router.params); // 参数接收
 
   // 滑块下标
   const [current, setCurrent] = useState(0);

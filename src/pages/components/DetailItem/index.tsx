@@ -1,10 +1,10 @@
 import { View } from "@tarojs/components";
 import React from "react";
-import { useRouter } from "@tarojs/taro";
 import { Back, LookDetail, Music } from "@/pages/components";
 import "./index.less";
 import { Next } from "../Next/index";
 import { Product } from "../../brands/Product";
+import { useSelector } from '../../../redux/hooks';
 
 interface DetailProps {
   background: string; // 背景图
@@ -29,10 +29,9 @@ export const DetailItem: React.FC<DetailProps> = props => {
     isBlack = false
   } = props;
 
-  const router = useRouter();
-  const { path } = router.params;
+  const currentProduct = useSelector(s => s.context.currentProduct);
 
-  const isGuoniang = path === Product.GUO_NIANG;
+  const isGuoniang = currentProduct === Product.GUO_NIANG;
 
   return (
     <View className={`detail_item_con ${background}`}>

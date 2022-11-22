@@ -1,8 +1,7 @@
 import { View, Image } from "@tarojs/components";
 import { useState, useEffect } from "react";
-import Taro, { useRouter } from "@tarojs/taro";
 import { Back, Dialog, Music } from "@/pages/components";
-import { useDispatch } from "@/redux/hooks";
+import { useDispatch, useSelector } from "@/redux/hooks";
 import { contextSlice } from "@/redux/contextSlice";
 import "./index.less";
 import detail_logo from "./imgs/lichuan_logo.png";
@@ -22,12 +21,11 @@ const Home = () => {
   const hidePortal = () => {
     setIsPortalVisible(false);
   };
-  const router = useRouter();
   const dispatch = useDispatch();
+  const currentProduct = useSelector(s => s.context.currentProduct);
 
   const toNextPage = () => {
-    const { path } = router.params;
-    dispatch(contextSlice.actions.doNext({ path }));
+    dispatch(contextSlice.actions.doNext({ product:currentProduct }));
   };
 
   useEffect(() => {

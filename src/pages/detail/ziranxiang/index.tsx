@@ -1,5 +1,5 @@
 import { SwiperContainer } from "@/pages/components/SwiperContainer/index";
-import { ziranxiangItems } from "@/pages/index/congfig";
+import { ziranxiangItems } from "@/pages/index2/congfig";
 
 const Ziranxiang = () => {
   return <SwiperContainer items={ziranxiangItems} />;

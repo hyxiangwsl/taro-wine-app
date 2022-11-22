@@ -1,12 +1,10 @@
 import { View, Image } from "@tarojs/components";
 import { useState, useEffect } from "react";
-import Taro, { useRouter } from "@tarojs/taro";
 import { Back, Dialog, Music } from "@/pages/components";
-import { useDispatch } from "@/redux/hooks";
+import { useDispatch, useSelector } from "@/redux/hooks";
 import { contextSlice } from "@/redux/contextSlice";
 import "./index.less";
 import detail_logo from "./imgs/xueyu_logo.png";
-import detail_logo1 from "./imgs/xueyu_logo2.png";
 import detail_l from "./imgs/xueyu_detail_l.png";
 import detail_r from "./imgs/xueyu_detail_r.png";
 import xueyu_brand_desc from "./imgs/xueyu_brand_desc.png";
@@ -25,12 +23,12 @@ const Home = () => {
     setIsPortalVisible(false);
   };
 
-  const router = useRouter();
   const dispatch = useDispatch();
+  const currentProduct = useSelector(s => s.context.currentProduct);
 
   const toNextPage = () => {
-    const { path } = router.params;
-    dispatch(contextSlice.actions.doNext({ path }));
+
+    dispatch(contextSlice.actions.doNext({  product:currentProduct   }));
   };
 
   useEffect(() => {

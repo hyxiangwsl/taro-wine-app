@@ -1,7 +1,6 @@
 import { contextSlice } from "@/redux/contextSlice";
-import { useDispatch } from "@/redux/hooks";
+import { useDispatch, useSelector } from "@/redux/hooks";
 import { Image } from "@tarojs/components";
-import Taro, { useRouter } from "@tarojs/taro";
 import "./index.less";
 
 interface NextProps {
@@ -14,11 +13,10 @@ interface NextProps {
 export const Next: React.FC<NextProps> = ({ img, className = "" }) => {
   const dispatch = useDispatch();
 
-  const router = useRouter();
-  const { path } = router.params;
+  const currentProduct = useSelector(s => s.context.currentProduct);
 
   const doNavigate = () => {
-    dispatch(contextSlice.actions.doNext({ path }));
+    dispatch(contextSlice.actions.doNext({ product:currentProduct }));
   };
   return (
     <Image

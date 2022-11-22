@@ -1,6 +1,4 @@
-import { View } from "@tarojs/components";
-import { Back, LookDetail, Music, DetailItem } from "@/pages/components";
-
+import {  DetailItem } from "@/pages/components";
 import "./index.less";
 import detailH from "./imgs/chidu_look_h_1.png";
 

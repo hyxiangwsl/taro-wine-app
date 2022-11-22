@@ -1,6 +1,5 @@
 import { Product } from "@/pages/brands/Product";
 import { createSlice } from "@reduxjs/toolkit";
-import Taro, { useRouter } from "@tarojs/taro";
 import { mapEnum } from "./utile";
 
 interface ProductCurr {
@@ -11,20 +10,24 @@ interface ProductCurr {
 interface contextState {
   current: number; // 当前下标
   path: string; // 当前页面路径
+  currentProduct: string; // 当前产品
   /** 不同产品的下标 */
   prodList: ProductCurr[];
+  isFirstLoad: boolean; // 是不是第一次加载
 }
 
 const defaultState: contextState = {
   current: 0,
-  path: "/pages/home/index",
+  path: "/pages/index/index",
+  currentProduct: "index",
   prodList: mapEnum(Product, (e: string) => ({
     current: 0,
     name: e
-  }))
+  })),
+  isFirstLoad: true
 };
 
-console.log("xxx", defaultState);
+// console.log("xxx", defaultState);
 
 export const contextSlice = createSlice({
   name: "context",
@@ -32,12 +35,12 @@ export const contextSlice = createSlice({
   reducers: {
     // 改变下标
     changeCurrent: (state, { payload }) => {
-      if (payload && payload?.path) {
+      if (payload && payload?.product && payload?.product !== "index") {
         // 如果是产品里面的话
         return {
           ...state,
           prodList: state.prodList.map(item =>
-            item.name === payload.path
+            item.name === payload.product
               ? { ...item, current: payload.current }
               : item
           )
@@ -49,46 +52,16 @@ export const contextSlice = createSlice({
         current: payload.current
       };
     },
-    // 返回上一页(下标-1)
-    preCurrent: (state, { payload }) => {
-      console.log("走了吗prodList", state.prodList);
-      if (payload && payload?.path) {
-        // 如果是产品里面的话
-        const temp = state.prodList.find(item => item.name === payload.path);
-        if (temp && temp.current <= 0) {
-          Taro.navigateBack();
-          return { ...state, current: 2 };
-        }
-
-        return {
-          ...state,
-          prodList: state.prodList.map(item =>
-            item.name === payload.path
-              ? { ...item, current: item.current - 1 }
-              : item
-          )
-        };
-      }
-
-      if (state.current <= 0) {
-        Taro.navigateBack();
-        return { ...state };
-      }
-      return {
-        ...state,
-        current: state.current - 1
-      };
-    },
     // 下一页
     doNext: (state, { payload }) => {
-      console.log("走了吗", state.current);
+      // console.log("走了吗", state.current);
 
-      if (payload && payload?.path) {
+      if (payload && payload?.product && payload?.product !== "index") {
         // 如果是产品里面的话
         return {
           ...state,
           prodList: state.prodList.map(item =>
-            item.name === payload.path
+            item.name === payload.product
               ? { ...item, current: item.current + 1 }
               : item
           )
@@ -102,14 +75,12 @@ export const contextSlice = createSlice({
     },
     // 设置下标为0
     setCurrentInit: (state, { payload }) => {
-      if (payload && payload?.path) {
+      if (payload && payload?.product && payload?.product !== "index") {
         // 如果是产品里面的话
         return {
           ...state,
           prodList: state.prodList.map(item =>
-            item.name === payload.path
-              ? { ...item, current: 0 }
-              : item
+            item.name === payload.product ? { ...item, current: 0 } : item
           )
         };
       }
@@ -117,6 +88,20 @@ export const contextSlice = createSlice({
       return {
         ...state,
         current: state.current - 1
+      };
+    },
+    // 设置产品
+    setCurrentProduct: (state, { payload }) => {
+      return {
+        ...state,
+        currentProduct: payload.product
+      };
+    },
+    // 改变是否第一次加载
+    changeFirstLoad: (state, { payload }) => {
+      return {
+        ...state,
+        isFirstLoad: payload.isLoad
       };
     },
     // 清空下标

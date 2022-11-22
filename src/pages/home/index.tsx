@@ -1,15 +1,16 @@
 import { View, Image } from "@tarojs/components";
 import { useState, useEffect } from "react";
-import { useDispatch } from "@/redux/hooks";
+import { useDispatch, useSelector } from "@/redux/hooks";
 import { contextSlice } from "@/redux/contextSlice";
 import "./index.less";
 import img1 from "./imgs/index1_2.png";
 import img2 from "./imgs/index1_3.png";
 import img3 from "./imgs/index1_4.png";
 
-const PageView = () => {
+const PageView = ({ changePlaying }) => {
   const [showPoint, setShowPoint] = useState(false);
 
+  const first = useSelector(s => s.context.isFirstLoad);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,6 +37,12 @@ const PageView = () => {
               className='index1_pointer'
               onClick={() => {
                 toNextPage();
+                if (first) {
+                  dispatch(
+                    contextSlice.actions.changeFirstLoad({ isLoad: false })
+                  );
+                  changePlaying();
+                }
               }}
             ></Image>
           )}
