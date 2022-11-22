@@ -1,15 +1,22 @@
-import Index from "@/pages/index2/index";
+import Index from "@/pages/homeIndex/index";
 import { Text } from "@tarojs/components";
-import React, { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Taro from "@tarojs/taro";
-import { useSelector } from "@/redux/hooks";
+import { contextSlice } from "@/redux/contextSlice";
+import { useSelector, useDispatch } from "@/redux/hooks";
+// 引入页面组件 不使用动态组件
+import pages from "./page";
 import bgm from "./bgm.mp3";
 
+
 const PageView = () => {
-  // const dispatch = useDispatch(); useDispatch
+  const dispatch = useDispatch();
 
   const [sliderVal, setSliderVal] = useState(0);
-  const [playing, setPlaying] = useState(false);
+
+  const playing = useSelector(s => s.context.playing);
+
+  const changePlay = useSelector(s => s.context.changePlay);
 
   // 创建音频
   let innerAudioContext = Taro.createInnerAudioContext();
@@ -18,13 +25,13 @@ const PageView = () => {
 
   innerAudioContext.onPlay(() => {
     // 开始
-    // console.log("开始播放");
-    setPlaying(true);
+    console.log("开始播放");
+    dispatch(contextSlice.actions.changePlaying({ playing: true }));
   });
   innerAudioContext.onPause(() => {
     // 暂停
     console.log("暂停播放");
-    setPlaying(false);
+    dispatch(contextSlice.actions.changePlaying({ playing: false }));
   });
   innerAudioContext.onTimeUpdate(() => {
     if (sliderVal !== 0) {
@@ -35,27 +42,32 @@ const PageView = () => {
 
   innerAudioContext.onStop(() => {
     console.log("停止", sliderVal);
-    setPlaying(false);
+    dispatch(contextSlice.actions.changePlaying({ playing: false }));
   });
 
   innerAudioContext.onError(res => {
     console.log("errMsg", res.errMsg);
     innerAudioContext.stop();
-    setPlaying(false);
+    dispatch(contextSlice.actions.changePlaying({ playing: false }));
   });
 
   const [audioContextIns] = useState(innerAudioContext); // 音频实例持久化
 
   // 切换播放状态
-  const changePlaying = () => {
-    console.log("改变播放");
-
+  const dochangePlaying = () => {
+    dispatch(contextSlice.actions.setChangePlay({ changePlay: false }));
     if (playing) {
       audioContextIns.pause();
     } else {
       audioContextIns.play();
     }
   };
+
+  useEffect(() => {
+    if (changePlay) {
+      dochangePlaying();
+    }
+  }, [changePlay]);
 
   useEffect(() => {
     return () => {
@@ -65,24 +77,11 @@ const PageView = () => {
     };
   }, [audioContextIns]);
 
-
   const currentProduct = useSelector(s => s.context.currentProduct);
 
-  const Com = React.lazy(() =>
-    import(`@/pages/detail/${currentProduct}/index`)
-  );
+  const Com = pages[currentProduct || "guoniang"];
 
-  return (
-    <div>
-      <Suspense fallback={<Text>Loading...</Text>}>
-        {currentProduct === "index" ? (
-          <Index changePlaying={changePlaying} />
-        ) : (
-          <Com />
-        )}
-      </Suspense>
-    </div>
-  );
+  return <div>{currentProduct === "index" ? <Index /> : <Com />}</div>;
 };
 
 export default PageView;

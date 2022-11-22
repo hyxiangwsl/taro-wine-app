@@ -11,15 +11,16 @@ interface ISwiperProps {
     com: any;
     path: string; // 用路径来当做id
   }>;
-  changePlaying?:()=>void
 }
 
-export const SwiperContainer: React.FC<ISwiperProps> = ({ items ,changePlaying}) => {
+export const SwiperContainer: React.FC<ISwiperProps> = ({ items}) => {
   const currentCtx = useSelector(s => s.context.current);
   const prodList = useSelector(s => s.context.prodList || []);
   const dispatch = useDispatch();
 
   const currentProduct = useSelector(s => s.context.currentProduct);
+
+  const isPlaying = useSelector(s => s.context.playing);
 
   // 默认是首页的下标
   let current = currentCtx;
@@ -33,7 +34,14 @@ export const SwiperContainer: React.FC<ISwiperProps> = ({ items ,changePlaying})
     dispatch(
       contextSlice.actions.changeCurrent({product: currentProduct, current: detail.current })
     );
-    // console.log("下标改变", e);
+    // 如果还没播放 则播放
+    // todo 微信端不给自动播放
+    // if (detail.current === 1 && !isPlaying && currentProduct === 'index') {
+    //     dispatch(
+    //       contextSlice.actions.changeFirstLoad({ isLoad: false })
+    //     );
+    //     dispatch(contextSlice.actions.setChangePlay({ changePlay: true }));
+    // }
   };
 
   console.log("current", current, "path", currentProduct);
@@ -57,8 +65,9 @@ export const SwiperContainer: React.FC<ISwiperProps> = ({ items ,changePlaying})
           //   return;
           // }}
         >
+          {/* changePlaying={changePlaying}  */}
           <Suspense fallback={<Text>Loading...</Text>}>
-            <Com changePlaying={changePlaying} />
+            <Com />
           </Suspense>
         </SwiperItem>
       ))}

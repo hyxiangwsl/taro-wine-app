@@ -1,5 +1,5 @@
 import { SwiperContainer } from "@/pages/components/SwiperContainer/index";
-import { xueyuItems } from "@/pages/index2/congfig";
+import { xueyuItems } from "@/pages/homeIndex/congfig";
 
 const Xueyu = () => {
   return <SwiperContainer items={xueyuItems} />;

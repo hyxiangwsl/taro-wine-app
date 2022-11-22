@@ -7,7 +7,7 @@ import img1 from "./imgs/index1_2.png";
 import img2 from "./imgs/index1_3.png";
 import img3 from "./imgs/index1_4.png";
 
-const PageView = ({ changePlaying }) => {
+const PageView = () => {
   const [showPoint, setShowPoint] = useState(false);
 
   const first = useSelector(s => s.context.isFirstLoad);
@@ -41,7 +41,7 @@ const PageView = ({ changePlaying }) => {
                   dispatch(
                     contextSlice.actions.changeFirstLoad({ isLoad: false })
                   );
-                  changePlaying();
+                  dispatch(contextSlice.actions.setChangePlay({ changePlay: true }));
                 }
               }}
             ></Image>

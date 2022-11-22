@@ -14,6 +14,8 @@ interface contextState {
   /** 不同产品的下标 */
   prodList: ProductCurr[];
   isFirstLoad: boolean; // 是不是第一次加载
+  playing: boolean; // 音乐是不是在播放中
+  changePlay: boolean; // 触发播放音乐
 }
 
 const defaultState: contextState = {
@@ -24,7 +26,9 @@ const defaultState: contextState = {
     current: 0,
     name: e
   })),
-  isFirstLoad: true
+  isFirstLoad: true,
+  playing: false, // 音乐是不是在播放中
+  changePlay: false
 };
 
 // console.log("xxx", defaultState);
@@ -46,7 +50,6 @@ export const contextSlice = createSlice({
           )
         };
       }
-
       return {
         ...state,
         current: payload.current
@@ -102,6 +105,19 @@ export const contextSlice = createSlice({
       return {
         ...state,
         isFirstLoad: payload.isLoad
+      };
+    },
+    // 改变是否第一次加载
+    changePlaying: (state, { payload }) => {
+      return {
+        ...state,
+        playing: payload.playing
+      };
+    },
+    setChangePlay: (state, { payload }) => {
+      return {
+        ...state,
+        changePlay: payload.changePlay
       };
     },
     // 清空下标
